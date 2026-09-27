@@ -1,0 +1,281 @@
+🚑 4. Ambulance Module
+This feature makes your project more interesting.
+A person can submit an emergency ambulance request.
+Example form:
+Patient Name
+Contact Number
+Pickup Location
+Destination Hospital
+Emergency Type
+Request Time
+Then the request gets a status:
+Requested
+Accepted
+Ambulance Assigned
+On the Way
+Reached
+Completed
+Cancelled
+Clinic/admin dashboard:
+AMBULANCE REQUEST #A102
+
+Patient: Rahul
+Pickup: Wakad
+Destination: Nearby Hospital
+Status: Ambulance Assigned
+📍 Ambulance Location
+For a prototype, you don't necessarily need real ambulance GPS.
+You could show registered ambulances like:
+Ambulance 01
+Location: Wakad
+Status: Available
+
+Ambulance 02
+Location: Hinjawadi
+Status: Busy
+
+5. Blood Requirement Module
+Another important part of the project.
+The user could search by:
+Blood Group
+Location
+For example:
+Blood Group: O+
+Location: Pune
+The system could show:
+ABC Blood Bank
+O+ : Available
+Location: Wakad
+Contact: XXXXXXXX
+
+XYZ Blood Centre
+O+ : Limited
+Location: Pimpri
+Contact: XXXXXXXX
+You can maintain blood availability statuses like:
+Available
+Limited
+Unavailable
+Unknown
+🩸 Blood Requirement Request
+If blood isn't immediately available, the user can submit a requirement.
+Example:
+Blood Group: AB-
+Units Required: 2
+Hospital: XYZ Hospital
+Location: Pune
+Required Date: 29 September
+Contact Number: XXXXXXXX
+Then your system could show this to registered blood banks/admins.
+Again, this is coordination information, not medical advice.
+🏥 6. Nearby Hospitals and Clinics
+You could create a facility directory containing:
+Hospital Name
+Type
+Location
+Phone Number
+Emergency Service
+Ambulance Availability
+Blood Bank Availability
+Opening Hours
+For example:
+City Hospital
+2.4 km away
+
+Emergency: Available
+Ambulance: Available
+Blood Bank: Available
+Later, this could be connected with a mapping service.
+🚨 7. Emergency Dashboard
+This can become one of the strongest screens in your project.
+Imagine a page containing:
+Emergency Services
+
+🚑 Request Ambulance
+
+🩸 Find Blood
+
+🏥 Find Nearby Hospital
+
+📞 Emergency Contacts
+A person facing an urgent situation doesn't need to navigate through many pages.
+📊 8. Clinic Dashboard
+When clinic staff logs in, they could see:
+Today's Appointments: 24
+
+Completed: 12
+
+Waiting: 4
+
+Upcoming: 6
+
+Cancelled: 2
+
+
+Ambulance Requests: 3
+
+Blood Requests: 2
+You can also add graphs such as:
+Appointments This Week
+Mon █████ 18
+Tue ███████ 25
+Wed ████ 15
+Thu ██████ 21
+Fri ████████ 28
+
+Yes — you need 3 separate user roles with different dashboards/pages after login:
+1. Patient/User Login
+This is for patients or family members.
+After login, they should see a Patient Dashboard with things like:
+- Book Appointment
+- View My Appointments
+- Cancel/Reschedule Appointment
+- View Appointment Status
+- View Basic Visit History
+- Request Ambulance
+- Track Ambulance Request
+- Search Blood Availability
+- Submit Blood Requirement
+- Find Nearby Hospitals / Clinics / Blood Banks
+- View Notifications / Reminders
+- Edit Profile
+Example flow:
+Patient Login → Patient Dashboard → Book Appointment / Emergency Services / Blood Search
+2. Clinic Staff / Receptionist Login
+This is for clinic employees.
+After login, they should see a Clinic Staff Dashboard with:
+- Register New Patient
+- Search Patient
+- View Today's Appointments
+- Add Appointment
+- Reschedule Appointment
+- Update Appointment Status
+- Mark Patient as Waiting / Completed / Cancelled
+- View Basic Visit History
+- Create Follow-up Reminder
+- View Ambulance Requests
+- View Blood Requests
+- View Emergency Requests
+- Basic Clinic Statistics
+Example:
+Staff Login → Clinic Dashboard → Patients / Appointments / Emergency Requests
+This dashboard should focus on daily clinic operations.
+3. Admin Login
+Admin has the highest level of control.
+After login, the Admin Dashboard can contain:
+- Manage Patients
+- Manage Clinic Staff
+- Manage Clinics
+- Manage Ambulances
+- Manage Blood Banks
+- Manage Hospitals
+- View All Appointments
+- View All Ambulance Requests
+- View All Blood Requests
+- Manage Users
+- Activate/Deactivate Accounts
+- View Reports & Statistics
+- View Emergency Activity
+- Manage System Data
+Example:
+Admin Login → Admin Dashboard → Users / Clinics / Ambulances / Blood Banks / Reports
+Admin should normally manage the system, while clinic staff manage the clinic.
+Your complete structure
+                    APPLICATION
+                         |
+                      LOGIN
+                         |
+        +----------------+----------------+
+        |                |                |
+        v                v                v
+
+     PATIENT          CLINIC STAFF       ADMIN
+     / USER           / RECEPTIONIST
+
+        |                |                |
+        v                v                v
+
+ Patient Dashboard   Staff Dashboard   Admin Dashboard
+
+ Appointments        Patients          Users
+ Ambulance           Appointments      Clinics
+ Blood Search        Visit History     Staff
+ Hospitals           Emergencies       Ambulances
+ Profile             Blood Requests    Blood Banks
+ Reminders           Ambulance Req.    Hospitals
+                                      Reports
+
+How login should work
+You actually have two good UI options.
+Option A — One Login Page, Role-Based Redirect
+This is usually cleaner.
+Email
+Password
+Role:
+○ Patient
+○ Clinic Staff
+○ Admin
+
+            Login
+
+Then:
+Patient      → /patient/dashboard
+Clinic Staff → /staff/dashboard
+Admin        → /admin/dashboard
+
+Option B — Three Separate Login Pages
+Your home page can show:
+Welcome to CareBridge
+
+[ Patient Login ]
+
+[ Clinic Staff Login ]
+
+[ Admin Login ]
+
+Then you have:
+/patient/login
+/staff/login
+/admin/login
+
+For a hackathon, I would use three role cards on one landing page, leading to three visually different dashboards. That makes the role separation immediately obvious to judges.
+Important security point
+Don't only hide pages visually. Store a role with every user:
+user_id
+name
+email
+password
+role
+
+Example:
+101 | Rahul | rahul@email.com | **** | patient
+102 | Neha  | neha@clinic.com | **** | staff
+103 | Admin | admin@app.com    | **** | admin
+
+After login, the backend checks the role.
+For example:
+if role == patient
+   open Patient Dashboard
+
+if role == staff
+   open Clinic Dashboard
+
+if role == admin
+   open Admin Dashboard
+
+So a patient shouldn't be able to manually type /admin/dashboard and access admin features.
+Best overall UI flow
+Your landing page could look like:
+┌───────────────────────────────────────────────┐
+│                 CAREBRIDGE                    │
+│     Healthcare Coordination Platform         │
+│                                               │
+│   Who are you?                                │
+│                                               │
+│  ┌───────────┐ ┌───────────┐ ┌───────────┐  │
+│  │    👤     │ │    🏥     │ │    ⚙️     │  │
+│  │  Patient  │ │Clinic Staff│ │   Admin   │  │
+│  │           │ │            │ │           │  │
+│  │   Login   │ │   Login    │ │   Login   │  │
+│  └───────────┘ └───────────┘ └───────────┘  │
+└───────────────────────────────────────────────┘

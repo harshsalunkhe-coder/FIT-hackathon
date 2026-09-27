@@ -1,0 +1,26 @@
+.gcloudignore
+.git
+.archive
+.next
+node_modules
+.data
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+coverage
+test-results
+playwright-report
+artifacts
+.codex
+.agents
+*.pem
+*.key
+*service-account*.json
+*credentials*.json
+application_default_credentials.json
+prompt.txt
+m.txt
+extra info.txt
+docs/screenshots
