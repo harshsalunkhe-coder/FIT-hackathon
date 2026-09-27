@@ -1,0 +1,1946 @@
+You are an elite hackathon full-stack developer, product architect, UI/UX designer, cloud engineer, QA engineer and product strategist.
+
+Your goal is to build a competition-quality healthcare coordination platform called:
+
+CAREBRIDGE
+
+Tagline:
+“Healthcare coordination from appointment to emergency.”
+
+This is being built for a hackathon.
+
+The goal is NOT simply to create pages that satisfy a checklist.
+
+The goal is to create a polished, practical and memorable product that judges can understand within 30 seconds and successfully test during the live demo.
+
+==================================================
+1. PROBLEM
+==================================================
+
+Small clinics often manage appointments through:
+
+- phone calls
+- notebooks
+- WhatsApp
+- spreadsheets
+
+This causes problems such as:
+
+- appointment confusion
+- missed appointments
+- difficulty tracking patient queues
+- scattered patient information
+- poor coordination during emergencies
+- difficulty locating ambulances
+- difficulty finding blood availability
+- difficulty locating nearby hospitals, clinics and blood banks
+
+CareBridge will bring these coordination functions into one accessible platform.
+
+==================================================
+2. IMPORTANT MEDICAL BOUNDARY
+==================================================
+
+CareBridge is an administrative and coordination platform.
+
+It must NOT:
+
+- diagnose diseases
+- suggest treatments
+- prescribe medicines
+- provide clinical recommendations
+- perform medical decision-making
+- predict diseases
+- assign clinical risk scores
+
+The application only manages:
+
+- patients
+- appointments
+- visit records
+- ambulance requests
+- emergency coordination
+- blood requirements
+- blood-bank information
+- nearby healthcare facility information
+
+Display this disclaimer subtly where appropriate:
+
+“CareBridge supports healthcare administration and emergency coordination. It does not provide medical diagnosis or treatment recommendations.”
+
+==================================================
+3. PRODUCT IDEA
+==================================================
+
+The platform should combine:
+
+ROUTINE HEALTHCARE COORDINATION
+
+Patient
+→ Appointment
+→ Clinic
+→ Waiting Queue
+→ Completed Visit
+→ Follow-up Reminder
+
+and:
+
+EMERGENCY COORDINATION
+
+Patient
+→ Emergency Assistance
+→ Ambulance
+→ Blood Requirement
+→ Nearby Healthcare Facility
+→ Coordination Timeline
+
+The modules must feel connected.
+
+Do NOT build them as unrelated pages.
+
+==================================================
+4. MOST IMPORTANT ARCHITECTURE
+==================================================
+
+There are THREE completely different user roles.
+
+1. PATIENT / USER
+2. CLINIC STAFF / RECEPTIONIST
+3. ADMIN
+
+Each role must have:
+
+- its own login
+- its own dashboard
+- its own sidebar/navigation
+- role-specific permissions
+- different available actions
+
+This separation must be visually obvious to hackathon judges.
+
+==================================================
+5. LANDING PAGE
+==================================================
+
+page name will be "care desk"
+
+Create an impressive landing page.
+
+Hero:
+
+CAREBRIDGE
+
+Healthcare Coordination Platform
+
+Subtitle:
+
+“Appointments, emergency coordination, ambulance requests, blood requirements and healthcare facilities — connected in one platform.”
+
+Below hero:
+
+“Choose how you want to continue”
+
+Display three large premium role cards:
+
+PATIENT
+
+Icon:
+User
+
+Description:
+Book appointments, manage your visits and access emergency coordination.
+
+Button:
+Patient Login
+
+
+CLINIC STAFF
+
+Icon:
+Hospital / Stethoscope
+
+Description:
+Manage patients, appointments, queues and emergency requests.
+
+Button:
+Staff Login
+
+
+ADMIN
+
+Icon:
+Shield / Settings
+
+Description:
+Manage clinics, staff, ambulances, blood banks and platform activity.
+
+Button:
+Admin Login
+
+Routes:
+
+/patient/login
+
+/staff/login
+
+/admin/login
+
+Use visually different accent treatments for the three cards while maintaining the same design system.
+
+==================================================
+6. AUTHENTICATION AND SECURITY
+==================================================
+
+Use proper role-based access control.
+
+Each authenticated user should contain:
+
+id
+name
+email
+role
+status
+
+Roles:
+
+patient
+staff
+admin
+
+Do NOT rely only on hiding menu items.
+
+Protected routes must verify role.
+
+Example:
+
+Patient cannot access:
+
+/admin/*
+/staff/*
+
+Staff cannot access:
+
+/admin/*
+
+Admin has administrative access.
+
+If an unauthorized user manually enters a restricted URL:
+
+redirect them safely.
+
+Implement authentication using Firebase Authentication if available.
+
+Store role information securely.
+
+==================================================
+7. MODULE ONE — PATIENT / USER
+==================================================
+
+Patient Dashboard should provide:
+
+- Book Appointment
+- View My Appointments
+- Cancel Appointment
+- Reschedule Appointment
+- View Appointment Status
+- View Basic Visit History
+- View Follow-up Reminders
+- Request Ambulance
+- Track Ambulance Request
+- Search Blood Availability
+- Submit Blood Requirement
+- Find Nearby Hospitals
+- Find Nearby Clinics
+- Find Nearby Blood Banks
+- View Notifications
+- Edit Profile
+
+PATIENT DASHBOARD UI
+
+Top greeting:
+
+“Good morning, Rahul”
+
+Under it:
+
+Quick Actions
+
+[Book Appointment]
+
+[Emergency Assistance]
+
+[Find Blood]
+
+[Find Healthcare]
+
+Dashboard cards:
+
+Upcoming Appointment
+
+Active Emergency Request
+
+Pending Blood Requirement
+
+Notifications
+
+Then:
+
+Upcoming Appointments
+
+Recent Activity
+
+Emergency Services
+
+==================================================
+8. PATIENT PROFILE
+==================================================
+
+Store ONLY necessary administrative information.
+
+Fields:
+
+Patient ID
+Name
+Date of Birth or Age
+Gender
+Phone
+Email
+Address
+Blood Group
+Emergency Contact
+Profile Image optional
+
+Basic Visit History may contain:
+
+Visit Date
+Clinic
+Appointment ID
+Visit Status
+Administrative Note
+
+Do not include diagnosis recommendations.
+
+==================================================
+9. MODULE TWO — CLINIC STAFF / RECEPTIONIST
+==================================================
+
+Clinic staff manage daily clinic operations.
+
+Staff Dashboard must provide:
+
+- Register Patient
+- Search Patient
+- View Patient
+- Edit Basic Patient Information
+- View Today's Appointments
+- Add Appointment
+- Reschedule Appointment
+- Cancel Appointment
+- Update Appointment Status
+- Mark Patient Waiting
+- Mark Patient Completed
+- View Visit History
+- Create Follow-up Reminder
+- View Ambulance Requests
+- View Blood Requests
+- View Emergency Requests
+- View Clinic Statistics
+
+Staff should NOT receive unnecessary full-system administration controls.
+
+==================================================
+10. STAFF DASHBOARD
+==================================================
+
+Create a professional operational dashboard.
+
+Top statistics:
+
+Today's Appointments
+
+Completed
+
+Waiting
+
+Upcoming
+
+Cancelled
+
+Ambulance Requests
+
+Blood Requests
+
+Active Emergencies
+
+Example:
+
+Today's Appointments        24
+
+Completed                   12
+
+Waiting                      4
+
+Upcoming                     6
+
+Cancelled                    2
+
+Ambulance Requests           3
+
+Blood Requests               2
+
+Display:
+
+Today's Queue
+
+Upcoming Appointments
+
+Active Emergency Requests
+
+Recent Blood Requests
+
+Recent Activity
+
+Appointments This Week chart
+
+Use charts only where useful.
+
+==================================================
+11. APPOINTMENT MANAGEMENT
+==================================================
+
+Appointment object:
+
+appointmentId
+patientId
+clinicId
+staffId optional
+date
+time
+reason optional administrative text
+status
+createdAt
+updatedAt
+
+Statuses:
+
+Scheduled
+Confirmed
+Checked In
+Waiting
+Completed
+Cancelled
+No Show
+
+Appointment workflow:
+
+Book Appointment
+→ Confirmed
+→ Checked In
+→ Waiting
+→ Completed
+
+Allow:
+
+Create
+Edit
+Reschedule
+Cancel
+Search
+Filter
+Update Status
+
+Provide:
+
+calendar view
+
+list view
+
+today's queue
+
+patient appointment history
+
+appointment detail drawer
+
+==================================================
+12. FOLLOW-UP REMINDERS
+==================================================
+
+Clinic staff may create follow-up reminders.
+
+Fields:
+
+patient
+appointment
+followUpDate
+message
+status
+
+Statuses:
+
+Pending
+Sent
+Completed
+
+Patient dashboard should display reminders.
+
+For hackathon implementation:
+
+in-app notifications are sufficient.
+
+Optional extension:
+
+email/SMS integration.
+
+==================================================
+13. MODULE THREE — ADMIN
+==================================================
+
+Admin controls the platform.
+
+Admin Dashboard must allow:
+
+Manage Patients
+
+Manage Clinic Staff
+
+Manage Clinics
+
+Manage Users
+
+Manage Ambulances
+
+Manage Blood Banks
+
+Manage Hospitals
+
+View All Appointments
+
+View All Ambulance Requests
+
+View All Blood Requests
+
+View All Emergency Requests
+
+Manage Accounts
+
+Activate Account
+
+Deactivate Account
+
+View Reports
+
+View Statistics
+
+View Emergency Activity
+
+Manage System Data
+
+==================================================
+14. ADMIN DASHBOARD
+==================================================
+
+Create executive overview cards:
+
+Total Users
+
+Registered Patients
+
+Active Clinics
+
+Clinic Staff
+
+Appointments Today
+
+Active Ambulances
+
+Active Emergency Requests
+
+Blood Requests
+
+Then show:
+
+System Activity
+
+Clinic Performance Overview
+
+Ambulance Availability
+
+Blood Network Status
+
+Recent Emergency Requests
+
+User Management
+
+System Health
+
+==================================================
+15. USER MANAGEMENT
+==================================================
+
+Admin can:
+
+search users
+
+filter by role
+
+activate users
+
+deactivate users
+
+view account status
+
+Fields:
+
+name
+email
+role
+status
+createdAt
+
+Statuses:
+
+Active
+Inactive
+Suspended
+
+==================================================
+16. AMBULANCE MODULE
+==================================================
+
+This should be one of the strongest project features.
+
+Patient can submit:
+
+Patient Name
+
+Contact Number
+
+Pickup Location
+
+Destination Hospital optional
+
+Emergency Type
+
+Request Time
+
+Do NOT infer medical priority.
+
+Administrative Emergency Type can contain categories such as:
+
+General Emergency
+
+Accident Assistance
+
+Transport Assistance
+
+Other
+
+Ambulance request statuses:
+
+Requested
+
+Accepted
+
+Ambulance Assigned
+
+On the Way
+
+Reached
+
+Completed
+
+Cancelled
+
+==================================================
+17. AMBULANCE TRACKER
+==================================================
+
+Example:
+
+AMBULANCE REQUEST
+
+#A102
+
+Patient:
+Rahul
+
+Pickup:
+Wakad
+
+Destination:
+Nearby Hospital
+
+Ambulance:
+AMB-01
+
+Status:
+AMBULANCE ASSIGNED
+
+Show timeline:
+
+✓ Request Submitted
+
+✓ Request Accepted
+
+✓ Ambulance Assigned
+
+● On the Way
+
+○ Reached
+
+○ Completed
+
+Add:
+
+Driver / Operator Contact optional
+
+Ambulance Name / ID
+
+Last Updated
+
+Map preview where available
+
+==================================================
+18. AMBULANCE DIRECTORY
+==================================================
+
+Admin can manage ambulances.
+
+Example:
+
+Ambulance 01
+
+Location:
+Wakad
+
+Status:
+Available
+
+
+Ambulance 02
+
+Location:
+Hinjawadi
+
+Status:
+Busy
+
+Statuses:
+
+Available
+
+Assigned
+
+Busy
+
+Offline
+
+Maintenance
+
+For the hackathon prototype, actual GPS tracking is optional.
+
+Do NOT fake real GPS tracking.
+
+If real location is unavailable, display:
+
+“Demo Location”
+
+or
+
+“Last Reported Location.”
+
+==================================================
+19. EMERGENCY DASHBOARD
+==================================================
+
+Emergency Assistance should be extremely easy to access.
+
+A user in an urgent situation should NOT navigate through multiple pages.
+
+Provide one prominent page:
+
+EMERGENCY ASSISTANCE
+
+Three major cards:
+
+REQUEST AMBULANCE
+
+FIND BLOOD
+
+FIND NEARBY HEALTHCARE
+
+Also show:
+
+Emergency Contacts
+
+Existing Active Request
+
+Emergency Activity Status
+
+This page should work extremely well on mobile.
+
+==================================================
+20. EMERGENCY COORDINATION CARD
+==================================================
+
+THIS IS ONE OF THE MAIN HACKATHON DIFFERENTIATORS.
+
+When an emergency request is created, generate a central Emergency Coordination Record.
+
+Example:
+
+EMERGENCY REQUEST
+
+#EMR-2048
+
+Patient:
+Rahul Sharma
+
+Blood Group:
+O+
+
+Location:
+Wakad, Pune
+
+REQUEST STATUS
+ACTIVE
+
+----------------------------
+
+AMBULANCE
+
+AMB-01
+
+Status:
+On The Way
+
+----------------------------
+
+BLOOD
+
+O+
+
+Matching Sources:
+3
+
+----------------------------
+
+NEARBY HEALTHCARE
+
+City Hospital
+
+Distance:
+2.4 km
+
+----------------------------
+
+ACTIVITY TIMELINE
+
+13:04 Request Created
+
+13:05 Ambulance Requested
+
+13:06 Ambulance Assigned
+
+13:07 Blood Search Started
+
+13:08 Matching Blood Bank Found
+
+13:09 Nearby Hospital Selected
+
+This makes appointments, ambulance, blood and healthcare resources feel like one real product.
+
+==================================================
+21. BLOOD AVAILABILITY MODULE
+==================================================
+
+Allow search using:
+
+Blood Group
+
+Location
+
+Optional Radius
+
+Blood Groups:
+
+A+
+A-
+B+
+B-
+AB+
+AB-
+O+
+O-
+
+Result card example:
+
+ABC Blood Bank
+
+O+
+AVAILABLE
+
+Location:
+Wakad
+
+Distance:
+2.4 km
+
+Phone:
+XXXXXXXXXX
+
+Last Updated:
+12 minutes ago
+
+Buttons:
+
+Call
+
+Directions
+
+Details
+
+==================================================
+22. BLOOD AVAILABILITY STATUSES
+==================================================
+
+Use:
+
+Available
+
+Limited
+
+Unavailable
+
+Unknown
+
+Use clear UI indicators.
+
+Green:
+Available
+
+Amber:
+Limited
+
+Red:
+Unavailable
+
+Gray:
+Unknown
+
+Always show:
+
+Last Updated
+
+This prevents stale information from being presented as guaranteed real-time availability.
+
+==================================================
+23. BLOOD REQUIREMENT REQUEST
+==================================================
+
+When blood isn't immediately available, allow the user to submit a requirement.
+
+Fields:
+
+Request ID
+
+Patient Name
+
+Blood Group
+
+Units Required
+
+Hospital
+
+Location
+
+Required Date
+
+Contact Number
+
+Notes optional
+
+Created At
+
+Statuses:
+
+Open
+
+Matched
+
+Contacted
+
+Fulfilled
+
+Closed
+
+Registered blood banks and administrators should be able to see relevant requests.
+
+This is coordination information only.
+
+==================================================
+24. BLOOD BANK MANAGEMENT
+==================================================
+
+Admin can manage:
+
+Blood Bank Name
+
+Address
+
+Location
+
+Phone
+
+Operating Hours
+
+Blood Groups
+
+Availability
+
+Last Updated
+
+Status
+
+Staff can view requests.
+
+Patient can search.
+
+==================================================
+25. NEARBY HEALTHCARE MODULE
+==================================================
+
+Create facility directory.
+
+Facility fields:
+
+Hospital / Clinic Name
+
+Facility Type
+
+Location
+
+Distance
+
+Phone Number
+
+Emergency Service
+
+Ambulance Availability
+
+Blood Bank Availability
+
+Opening Hours
+
+Example:
+
+CITY HOSPITAL
+
+2.4 km away
+
+Emergency:
+Available
+
+Ambulance:
+Available
+
+Blood Bank:
+Available
+
+Buttons:
+
+Call
+
+Directions
+
+View Details
+
+If Google Maps / Places API credentials are available:
+
+use actual nearby search.
+
+Otherwise:
+
+use high-quality seeded demo data and clearly identify it as demo information.
+
+==================================================
+26. GLOBAL SEARCH
+==================================================
+
+Implement global search.
+
+Keyboard shortcut:
+
+Ctrl + K
+
+or
+
+Cmd + K
+
+Search:
+
+patients
+
+appointments
+
+ambulance requests
+
+blood requests
+
+emergency request IDs
+
+facilities
+
+blood banks
+
+==================================================
+27. NOTIFICATIONS
+==================================================
+
+Create a notification system.
+
+Examples:
+
+Appointment Confirmed
+
+Appointment Rescheduled
+
+Appointment Reminder
+
+Ambulance Assigned
+
+Ambulance Status Updated
+
+Blood Requirement Updated
+
+Follow-up Reminder
+
+Emergency Request Updated
+
+Show:
+
+notification bell
+
+unread count
+
+notification dropdown
+
+==================================================
+28. UI DESIGN DIRECTION
+==================================================
+
+The application should look like a PREMIUM HEALTHCARE SaaS PRODUCT.
+
+Do NOT create a generic student CRUD project.
+
+Use:
+
+modern dashboard layouts
+
+clear typography
+
+generous whitespace
+
+rounded cards
+
+soft shadows
+
+subtle borders
+
+professional iconography
+
+hover states
+
+skeleton loading
+
+empty states
+
+toast notifications
+
+microinteractions
+
+responsive tables
+
+mobile-friendly forms
+
+drawer panels
+
+status badges
+
+command palette
+
+smooth transitions
+
+==================================================
+29. DESIGN SYSTEM
+==================================================
+
+Visual feeling:
+
+Calm
+
+Trustworthy
+
+Clean
+
+Modern
+
+Accessible
+
+Professional
+
+Primary:
+
+Deep healthcare teal / blue
+
+Background:
+
+Very light neutral gray
+
+Cards:
+
+White
+
+Success:
+
+Green
+
+Warning:
+
+Amber
+
+Emergency:
+
+Red
+
+Red should mainly be used for genuine emergency actions.
+
+Typography:
+
+Inter
+
+or a similar modern sans-serif.
+
+Icons:
+
+Lucide Icons
+
+Border radius:
+
+14px–18px
+
+Avoid:
+
+neon UI
+
+huge gradients
+
+excessive glassmorphism
+
+crowded screens
+
+random animations
+
+generic Bootstrap appearance
+
+==================================================
+30. OPTIONAL LOCALIZATION
+==================================================
+
+Provide language selector:
+
+English
+
+हिंदी
+
+मराठी
+
+At minimum architect translations so more languages could be added later.
+
+==================================================
+31. RESPONSIVE DESIGN
+==================================================
+
+The entire system must work on:
+
+Desktop
+
+Tablet
+
+Mobile
+
+Emergency functionality should be especially optimized for phones.
+
+Patient UI should be strongly mobile-friendly.
+
+Staff/Admin dashboard should be optimized primarily for desktop while still responsive.
+
+==================================================
+32. TECH STACK
+==================================================
+
+Preferred:
+
+Next.js
+
+TypeScript
+
+Tailwind CSS
+
+shadcn/ui
+
+Firebase Authentication
+
+Google Firestore
+
+Google Maps Platform / Places API
+
+Recharts
+
+Lucide Icons
+
+Framer Motion where useful
+
+Use a clean scalable architecture.
+
+==================================================
+33. DATABASE COLLECTIONS
+==================================================
+
+Create:
+
+users
+
+patients
+
+clinics
+
+clinicStaff
+
+appointments
+
+visitHistory
+
+followUpReminders
+
+ambulances
+
+ambulanceRequests
+
+bloodBanks
+
+bloodInventory
+
+bloodRequests
+
+healthcareFacilities
+
+emergencyRequests
+
+notifications
+
+activityLogs
+
+==================================================
+34. AUDIT LOG
+==================================================
+
+Important operations should generate activity entries.
+
+Examples:
+
+Patient registered
+
+Appointment created
+
+Appointment rescheduled
+
+Patient checked in
+
+Appointment completed
+
+Ambulance requested
+
+Ambulance assigned
+
+Ambulance reached location
+
+Blood request created
+
+Blood match found
+
+Emergency request opened
+
+Emergency request closed
+
+Admin user activated
+
+Admin data changed
+
+==================================================
+35. DEMO DATA
+==================================================
+
+Judges should NOT encounter an empty application.
+
+Seed realistic demo information.
+
+Create:
+
+12 patients
+
+15–20 appointments
+
+3 staff users
+
+3 ambulances
+
+5 blood banks
+
+multiple blood inventories
+
+6 healthcare facilities
+
+2 active emergency requests
+
+several notifications
+
+several activity logs
+
+Use realistic fictional Indian names and locations.
+
+Clearly identify demo data if necessary.
+
+==================================================
+36. DEMO ACCOUNTS
+==================================================
+
+Provide clearly visible hackathon demo accounts.
+
+PATIENT DEMO
+
+patient@carebridge.demo
+
+STAFF DEMO
+
+staff@carebridge.demo
+
+ADMIN DEMO
+
+admin@carebridge.demo
+
+Use appropriate demo passwords documented in README.
+
+Do not use these credentials for production.
+
+==================================================
+37. DEMO SCENARIO
+==================================================
+
+Create one optional “Run Demo Scenario” control in development/demo mode.
+
+Scenario:
+
+Patient Rahul needs transportation and O+ blood.
+
+Sequence:
+
+Emergency Request Created
+
+↓
+
+Ambulance Request Created
+
+↓
+
+AMB-01 Assigned
+
+↓
+
+Blood Search for O+
+
+↓
+
+Matching Blood Banks Found
+
+↓
+
+Nearest Facility Displayed
+
+↓
+
+Coordination Card Updated
+
+The demo scenario must call the actual application logic.
+
+Do NOT fake the UI with screenshots.
+
+==================================================
+38. KEY DEMO STORY
+==================================================
+
+The jury presentation should be able to demonstrate:
+
+STEP 1
+
+Landing Page
+
+Show three separate users.
+
+STEP 2
+
+Patient Login
+
+Book appointment.
+
+STEP 3
+
+Clinic Staff Login
+
+View appointment.
+
+Mark patient checked in.
+
+Mark waiting.
+
+Complete appointment.
+
+STEP 4
+
+Patient Emergency Assistance
+
+Create ambulance request.
+
+STEP 5
+
+Staff Dashboard
+
+Accept request.
+
+Assign ambulance.
+
+STEP 6
+
+Patient Dashboard
+
+See status update.
+
+STEP 7
+
+Search O+ blood.
+
+Show nearby blood banks.
+
+STEP 8
+
+Create blood requirement.
+
+STEP 9
+
+Open Emergency Coordination Card.
+
+Show:
+
+ambulance
+
+blood
+
+hospital
+
+timeline
+
+STEP 10
+
+Admin Login
+
+Show management dashboard and platform statistics.
+
+The whole story should be understandable in approximately 3–5 minutes.
+
+==================================================
+39. CLOUD RUN REQUIREMENT
+==================================================
+
+Deployment is mandatory.
+
+Application MUST deploy successfully to:
+
+GOOGLE CLOUD RUN
+
+Provide:
+
+Dockerfile
+
+.dockerignore
+
+.env.example
+
+README
+
+deployment instructions
+
+production build
+
+application health endpoint
+
+Correct environment handling
+
+The application must respect:
+
+process.env.PORT
+
+and bind appropriately for Cloud Run.
+
+Deployment should NOT be left until the final hour.
+
+Continuously ensure production builds work.
+
+==================================================
+40. README
+==================================================
+
+Create professional documentation.
+
+Include:
+
+Project Name
+
+Problem Statement
+
+Solution
+
+Core Features
+
+Three User Roles
+
+System Architecture
+
+Technology Stack
+
+Database Design
+
+Screenshots placeholders
+
+Installation
+
+Environment Variables
+
+Local Development
+
+Cloud Run Deployment
+
+Demo Accounts
+
+Demo Flow
+
+Security
+
+Medical Safety Boundary
+
+Future Scope
+
+Team Information placeholder
+
+==================================================
+41. IMPORTANT UX STATES
+==================================================
+
+Every data-driven page must support:
+
+Loading state
+
+Success state
+
+Empty state
+
+Error state
+
+Example:
+
+Do not show blank page when no appointments exist.
+
+Show:
+
+“No appointments yet.”
+
+with:
+
+“Book Appointment”
+
+Do not leave meaningless errors like:
+
+Error 500.
+
+Display human-readable messages.
+
+==================================================
+42. CODE QUALITY
+==================================================
+
+Use:
+
+reusable components
+
+TypeScript types
+
+clear naming
+
+feature-based folders
+
+services
+
+repositories/data layer
+
+hooks where appropriate
+
+shared UI components
+
+validation
+
+proper error handling
+
+Do NOT put the whole application inside one massive component.
+
+Do NOT create dead buttons.
+
+Every major button shown during the demo must work.
+
+==================================================
+43. SECURITY
+==================================================
+
+Implement:
+
+role verification
+
+protected routes
+
+server validation
+
+Firestore security rules where possible
+
+safe environment variables
+
+input validation
+
+secret protection
+
+Never commit API keys.
+
+Patient should only see permitted data.
+
+Staff should only access permitted clinic functions.
+
+Admin access should be verified.
+
+==================================================
+44. ACCESSIBILITY
+==================================================
+
+Use:
+
+clear contrast
+
+labels
+
+keyboard accessibility
+
+large touch targets
+
+accessible dialogs
+
+visible focus states
+
+screen-reader-friendly controls where possible
+
+Emergency actions should be extremely easy to identify.
+
+==================================================
+45. PRIORITY ORDER
+==================================================
+
+If development time becomes limited:
+
+P0
+
+Authentication
+
+Role separation
+
+Patient CRUD
+
+Appointments
+
+Staff dashboard
+
+Ambulance requests
+
+Emergency Coordination Card
+
+Blood search
+
+Cloud Run deployment
+
+P1
+
+Admin management
+
+Notifications
+
+Healthcare facility search
+
+Appointment statistics
+
+Activity history
+
+P2
+
+Maps
+
+Advanced charts
+
+Localization
+
+Animations
+
+P3
+
+Optional enhancements
+
+Never sacrifice working P0 features for cosmetic P3 features.
+
+==================================================
+46. DEVELOPMENT PROCESS
+==================================================
+
+Do NOT attempt to generate the whole project blindly.
+
+Follow:
+
+PHASE 1
+Understand architecture.
+
+PHASE 2
+Design database.
+
+PHASE 3
+Create design system.
+
+PHASE 4
+Create role-based authentication.
+
+PHASE 5
+Create landing page.
+
+PHASE 6
+Create Patient module.
+
+PHASE 7
+Test Patient module.
+
+PHASE 8
+Create Staff module.
+
+PHASE 9
+Test Staff module.
+
+PHASE 10
+Create appointment workflow.
+
+PHASE 11
+Create ambulance system.
+
+PHASE 12
+Create blood module.
+
+PHASE 13
+Create healthcare facility module.
+
+PHASE 14
+Build Emergency Coordination Card.
+
+PHASE 15
+Create Admin module.
+
+PHASE 16
+Add demo data.
+
+PHASE 17
+Test role permissions.
+
+PHASE 18
+Test responsive design.
+
+PHASE 19
+Test production build.
+
+PHASE 20
+Deploy to Cloud Run.
+
+PHASE 21
+Perform hackathon jury simulation.
+
+PHASE 22
+Polish.
+
+==================================================
+47. FINAL HACKATHON QUALITY TEST
+==================================================
+
+Before calling this project complete, ask:
+
+Can the jury understand the problem in 30 seconds?
+
+Are the three user roles instantly understandable?
+
+Does each role have a genuinely different experience?
+
+Can the patient book an appointment successfully?
+
+Can staff manage the appointment successfully?
+
+Can an ambulance request be created and tracked?
+
+Can blood availability be searched?
+
+Can a blood requirement be submitted?
+
+Can nearby facilities be displayed?
+
+Does the Emergency Coordination Card connect these services?
+
+Can Admin manage system resources?
+
+Do protected routes actually work?
+
+Does mobile UI work?
+
+Are there broken buttons?
+
+Are there console errors?
+
+Does seeded demo data make the application immediately demonstrable?
+
+Does the application avoid medical decision-making?
+
+Can the application deploy to Google Cloud Run?
+
+Would the live demo work even if the jury gives us only three minutes?
+
+If any critical answer is NO:
+
+continue improving the application.
+
+Do not stop merely because every page exists.
+
+The standard is:
+
+FUNCTIONAL
+POLISHED
+CONNECTED
+DEMO-READY
+SECURE
+RESPONSIVE
+CLOUD-RUN DEPLOYED
+
+Build CareBridge like a hackathon finalist, not like a classroom CRUD assignment.

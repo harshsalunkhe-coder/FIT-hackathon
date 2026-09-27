@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.*.local
+.data/
+*.tsbuildinfo
+*.log
+service-account*.json
+credentials*.json
+artifacts/
+.archive/

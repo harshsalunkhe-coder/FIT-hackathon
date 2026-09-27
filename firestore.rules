@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // CareBridge only accesses Firestore from its server through Admin SDK + IAM.
+    // Browser/mobile SDK access is intentionally denied. Server-side role and
+    // record ownership checks still apply to every API action.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
